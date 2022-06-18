@@ -26,13 +26,13 @@ Products.init(
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       validate: {
-        len: [10],
         isNumeric: true,
       },
     },
     // References the category model's id
     category_id: {
       type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
       references: {
         model: "Categories",
         key: "id"

@@ -10,8 +10,8 @@ VALUES
 ('Tom', 'Tom'),
 ('Dan', 'Dan');
 
-INSERT INTO Products (product_name, price, stock)
+INSERT INTO Products (product_name, price, stock, category_id)
 VALUES
-("Tan Hat", 4.99, 10),
-("blue short sleeve", 12.99, 10),
-("dark green pants", 10.99, 10);
+("Tan Hat", 4.99, 10, 1),
+("blue short sleeve", 12.99, 10, 2),
+("dark green pants", 10.99, 10, 3);

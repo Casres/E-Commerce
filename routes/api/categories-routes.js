@@ -68,7 +68,7 @@ router.put('/:id', (req, res) => {
   )
   .then((dbUpdatedCategoryName) => {
     if (!dbUpdatedCategoryName) {
-      req.status(404).json({ message: "Category not found, please try again" });
+      res.status(404).json({ message: "Category not found, please try again" });
       return;
     }
     res.json({
