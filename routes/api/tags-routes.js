@@ -34,6 +34,9 @@ router.get("/", (req, res) => {
 // gets product by id✅
 router.get("/:id", (req, res) => {
   Tags.findOne({
+    where: {
+        id: req.params.id,
+    },
     attributes: ['id', 'tag_name'],
     include: [
         {
@@ -45,10 +48,10 @@ router.get("/:id", (req, res) => {
                 'stock',
                 'category_id'
             ],
-            include: [{
-                model: ProductTag,
-                attributes: ['product_id', 'tag_id']
-            }]
+            // include: [{
+            //     model: ProductTag,
+            //     attributes: ['product_id', 'tag_id']
+            // }]
         }
     ]
   })
