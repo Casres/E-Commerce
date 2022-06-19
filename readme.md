@@ -25,6 +25,19 @@ This project is licensed under: MIT
 ## **Usage**
 This application is to help an e-commerce store with the database for their website/store.
 
+**DataBase set up**
+https://user-images.githubusercontent.com/87106988/174504306-4e49e19b-4634-42a6-8511-a792b500a135.mp4
+
+**GET, POST, PUT, and DELETE Tags**
+https://user-images.githubusercontent.com/87106988/174504329-f98ff483-2835-4bba-8c56-1864be14ac10.mp4
+
+**GET, POST, PUT, and DELETE Products**
+https://user-images.githubusercontent.com/87106988/174504341-0ac5c875-9114-48d3-bc8d-9674798f68c9.mp4
+
+**GET, POST, PUT, and DELETE Categories**
+https://user-images.githubusercontent.com/87106988/174504349-df8933bd-adb0-4f7c-881c-59c3e11ef915.mp4
+
+
 ## **Installation**
 
 How to install: 
