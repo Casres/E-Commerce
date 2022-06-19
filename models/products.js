@@ -38,6 +38,7 @@ Products.init(
         key: "id"
       }
     },
+    
   },
   {
     sequelize,

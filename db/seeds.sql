@@ -15,3 +15,9 @@ VALUES
 ("Tan Hat", 4.99, 10, 1),
 ("blue short sleeve", 12.99, 10, 2),
 ("dark green pants", 10.99, 10, 3);
+
+INSERT INTO Tags (tag_name)
+VALUES
+("New Item"),
+("Sale"),
+('Discount');
