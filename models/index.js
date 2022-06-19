@@ -22,8 +22,12 @@ Tags.belongsToMany(Products, {
     foreignKey: 'tags_id'
 });
 
-// Products.hasMany(ProductTag, {
-    // foreignKey: 
-// })
+Products.hasMany(ProductTag, {
+    foreignKey: 'products_id'
+});
+
+Tags.hasMany(Products, {
+    foreignKey: 'tags_id'
+});
 
 module.exports = { Employee, Tags, Categories, Products, ProductTag };

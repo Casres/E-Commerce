@@ -17,14 +17,10 @@ router.get("/", (req, res) => {
             "stock", 
             "category_id"
         ],
-        include: {
+        include: [{
           model: ProductTag,
-          attribute: [
-            "id", 
-            "products_tag", 
-            "tags_id"
-        ],
-        },
+          through: ProductTag
+        }],
       },
     ],
   })
@@ -34,6 +30,17 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
 });
+
+// router.get('/', (req, res) => {
+//     Tags.findAll({
+//       include: [
+//         {
+//           model: Products,
+//           through: ProductTag,
+//         },
+//       ],
+//     }).then((tags) => res.json(tags));
+//   });
 
 // gets product by id
 router.get("/:id", (req, res) => {
