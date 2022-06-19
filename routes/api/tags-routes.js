@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Tags, Products, ProductTag } = require("../../models");
 // const userInputCheck = require('./checkUserInput');
 
-// gets all Tags
+// gets all Tags✅
 router.get("/", (req, res) => {
   Tags.findAll({
     order: [["id", "DESC"]],
@@ -17,10 +17,10 @@ router.get("/", (req, res) => {
             "stock", 
             "category_id"
         ],
-        include: [{
-          model: ProductTag,
-          attributes: ['product_id', 'tag_id']
-        }],
+        // include: [{
+        //   model: ProductTag,
+        //   attributes: ['product_id', 'tag_id']
+        // }],
       },
     ],
   })
@@ -31,19 +31,26 @@ router.get("/", (req, res) => {
     });
 });
 
-// gets product by id
+// gets product by id✅
 router.get("/:id", (req, res) => {
   Tags.findOne({
-    where: {
-      id: req.params.id,
-    },
-    attributes: ["id", "product_name", "price", "stock", "category_id"],
+    attributes: ['id', 'tag_name'],
     include: [
-      {
-        model: Categories,
-        attributes: ["category_name"],
-      },
-    ],
+        {
+            model: Products,
+            attributes: [
+                'id',
+                'product_name',
+                'price',
+                'stock',
+                'category_id'
+            ],
+            include: [{
+                model: ProductTag,
+                attributes: ['product_id', 'tag_id']
+            }]
+        }
+    ]
   })
     .then((dbTagsData) => {
       if (!dbTagsData) {
@@ -60,13 +67,10 @@ router.get("/:id", (req, res) => {
     });
 });
 
-// creates Tags
+// creates Tags✅
 router.post("/", (req, res) => {
   Tags.create({
-    product_name: req.body.product_name,
-    price: req.body.price,
-    stock: req.body.stock,
-    category_id: req.body.category_id,
+    tag_name: req.body.tag_name
   })
     .then((dbTagsData) => res.json(dbTagsData))
     .catch((err) => {
@@ -75,11 +79,11 @@ router.post("/", (req, res) => {
     });
 });
 
-// updates product by id
+// updates product by id✅
 router.put("/:id", (req, res) => {
   Tags.update(
     {
-      stock: req.body.stock,
+        tag_name: req.body.tag_name
     },
     {
       where: {
@@ -89,11 +93,11 @@ router.put("/:id", (req, res) => {
   )
     .then((dbTagsData) => {
       if (!dbTagsData) {
-        res.status(404).json({ message: "Product with this ID is not found" });
+        res.status(404).json({ message: "Tag with this ID is not found" });
         return;
       }
       res.json({
-        message: "product stock change successful",
+        message: "Tag change successful",
         changed: req.params.id,
       });
     })
@@ -103,7 +107,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-// deletes product by id
+// deletes product by id✅
 router.delete("/:id", (req, res) => {
   Tags.destroy({
     where: {
@@ -115,7 +119,7 @@ router.delete("/:id", (req, res) => {
         res
           .status(500)
           .json({
-            messages: "Cannot find product to delete, please try again",
+            messages: "Cannot find tag to delete, please try again",
           });
         return;
       }

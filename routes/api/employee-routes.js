@@ -21,7 +21,6 @@ router.get("/", (req, res) => {
       res.status(500).json(err);
     });
 });
-
 // gets employee by id✅
 router.get("/:id", (req, res) => {
   Employee.findOne({
