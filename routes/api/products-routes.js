@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Products, Categories, Employee } = require("../../models");
-const userInputCheck = require('./checkUserInput');
+// const userInputCheck = require('./checkUserInput');
 
 // gets all products✅
 router.get("/", (req, res) => {
@@ -60,15 +60,58 @@ router.post('/', (req, res) => {
     });
 });
 
-// updates product by id
+// updates product by id✅
+// wanted to make it to where the user input is checked 
+// and based off of what the user had put, 
+// then that is what would have been edited
 router.put('/:id', (req, res) => {
-    Products.update({
-        // userInputCheck(req)
-        where: {
-            id: req.params.id   
+    Products.update(
+        {
+            stock: req.body.stock,
         },
+        {
+            where: {
+                id: req.params.id   
+            },
+        }
+    )
+    .then((dbProductsData) => {
+        if(!dbProductsData) {
+            res.status(404).json({ message: "Product with this ID is not found" });
+            return;
+        }
+        res.json({
+            message: 'product stock change successful',
+            changed: req.params.id
+        });
     })
+    .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+    });
 });
 
-// deletes product by id
+// deletes product by id✅
+router.delete('/:id', (req, res) => {
+    Products.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+    .then((dbProductsData) => {
+        if (!dbProductsData) {
+            res.status(500).json({ messages: 'Cannot find product to delete, please try again' });
+            return;
+        }
+        res.json({
+            deleted: req.params.id,
+            rows_affected: dbProductsData
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+        res.status(404).json(err);
+    });
+});
+
 module.exports = router;
