@@ -31,17 +31,6 @@ router.get("/", (req, res) => {
     });
 });
 
-// router.get('/', (req, res) => {
-//     Tags.findAll({
-//       include: [
-//         {
-//           model: Products,
-//           through: ProductTag,
-//         },
-//       ],
-//     }).then((tags) => res.json(tags));
-//   });
-
 // gets product by id
 router.get("/:id", (req, res) => {
   Tags.findOne({
